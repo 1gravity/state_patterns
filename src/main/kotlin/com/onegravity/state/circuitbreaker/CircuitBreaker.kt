@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 const val timeout = 5 * 1000L
 const val failAfter = 5
 
-private val graph = createGraph<State<CircuitBreaker, String, Single<String>>, Event, Any>(null) {
+private val graph = createGraph<State<CircuitBreakerEvent, CircuitBreaker, String, Single<String>>, Event, Any>(null) {
         initialState(Closed(failAfter))
         state<Closed> {
             on<OnFailed> {
@@ -30,7 +30,7 @@ private val graph = createGraph<State<CircuitBreaker, String, Single<String>>, E
         }
     }
 
-class CircuitBreaker : ContextImpl<CircuitBreaker, String, Single<String>>(graph) {
+class CircuitBreaker : ContextImpl<CircuitBreakerEvent, CircuitBreaker, String, Single<String>>(graph) {
 
     /**
      * We wrap the call into a Completable so that we don't have to handle onError in the caller

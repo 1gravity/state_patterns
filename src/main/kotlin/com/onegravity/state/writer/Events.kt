@@ -2,6 +2,8 @@ package com.onegravity.state.writer
 
 import com.onegravity.state.Event
 
-object OnLowerCaseDone : Event()
+sealed class WriterEvent: Event()
 
-object OnUpperCaseDone : Event()
+object OnLowerCaseDone : WriterEvent()
+
+object OnUpperCaseDone : WriterEvent()

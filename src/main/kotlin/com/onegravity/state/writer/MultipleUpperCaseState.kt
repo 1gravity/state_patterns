@@ -2,7 +2,7 @@ package com.onegravity.state.writer
 
 import com.onegravity.state.State
 
-class MultipleUpperCaseState : State<WriterContext, String, Any?> {
+class MultipleUpperCaseState : State<WriterEvent, WriterContext, String, Any?> {
     private var count = 0
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

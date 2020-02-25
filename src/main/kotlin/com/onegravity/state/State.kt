@@ -1,6 +1,6 @@
 package com.onegravity.state
 
-interface State<C : Context, P: Any?, R : Any?> {
+interface State<E: Event, C : Context<E>, P: Any?, R : Any?> {
 
     fun handle(context: C, parameters: P): R
 

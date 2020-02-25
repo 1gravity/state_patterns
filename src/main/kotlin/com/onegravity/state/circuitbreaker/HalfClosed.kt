@@ -4,7 +4,7 @@ import com.onegravity.state.State
 import io.reactivex.Single
 import java.net.SocketTimeoutException
 
-class HalfClosed : State<CircuitBreaker, String, Single<String>> {
+class HalfClosed : State<CircuitBreakerEvent, CircuitBreaker, String, Single<String>> {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun handle(context: CircuitBreaker, url: String) =

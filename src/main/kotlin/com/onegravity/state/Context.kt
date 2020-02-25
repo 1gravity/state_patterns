@@ -1,7 +1,7 @@
 package com.onegravity.state
 
-interface Context {
+interface Context<E : Event> {
 
-    fun transition(event: Event)
+    fun transition(event: E)
 
 }

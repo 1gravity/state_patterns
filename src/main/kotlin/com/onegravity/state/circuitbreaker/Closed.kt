@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import com.github.kittinunf.result.Result
 import java.net.ConnectException
 
-class Closed(private val failAfter: Int) : State<CircuitBreaker, String, Single<String>> {
+class Closed(private val failAfter: Int) : State<CircuitBreakerEvent, CircuitBreaker, String, Single<String>> {
     private val failures = AtomicInteger(0)
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
