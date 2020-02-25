@@ -1,12 +1,12 @@
 package com.onegravity.state
 
 abstract class ContextImpl<C : Context, P: Any?, R : Any?>(
-    graph: StateMachine.Graph<State<C, P, R>, Event, Any>
+    graph: Graph<State<C, P, R>, Event, Any>
 ) : Context {
 
-    private val stateMachine = StateMachine.create(graph) {
+    private val stateMachine = createStateMachine(graph) {
         onTransition {
-            (it as? StateMachine.Transition.Valid)?.run {
+            (it as? Transition.Valid)?.run {
                 val fromState = fromState.javaClass.simpleName
                 val toState = toState.javaClass.simpleName
                 val event = event.javaClass.simpleName
@@ -15,7 +15,7 @@ abstract class ContextImpl<C : Context, P: Any?, R : Any?>(
         }
     }
 
-    fun getState() = stateMachine.state
+    fun getState() = stateMachine.getState()
 
     override fun transition(event: Event) {
         stateMachine.transition(event)

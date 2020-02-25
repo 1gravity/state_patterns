@@ -1,9 +1,6 @@
 package com.onegravity.state.circuitbreaker
 
-import com.onegravity.state.Event
-import com.onegravity.state.ContextImpl
-import com.onegravity.state.State
-import com.onegravity.state.StateMachine
+import com.onegravity.state.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -11,8 +8,7 @@ import io.reactivex.schedulers.Schedulers
 const val timeout = 5 * 1000L
 const val failAfter = 5
 
-private val graph = StateMachine
-    .createGraph<State<CircuitBreaker, String, Single<String>>, Event, Any> {
+private val graph = createGraph<State<CircuitBreaker, String, Single<String>>, Event, Any>(null) {
         initialState(Closed(failAfter))
         state<Closed> {
             on<OnFailed> {
@@ -51,5 +47,3 @@ class CircuitBreaker : ContextImpl<CircuitBreaker, String, Single<String>>(graph
     }
 
 }
-
-

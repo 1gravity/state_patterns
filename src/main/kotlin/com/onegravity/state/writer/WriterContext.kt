@@ -1,12 +1,8 @@
 package com.onegravity.state.writer
 
-import com.onegravity.state.Event
-import com.onegravity.state.ContextImpl
-import com.onegravity.state.State
-import com.onegravity.state.StateMachine
+import com.onegravity.state.*
 
-private val graph = StateMachine
-    .createGraph<State<WriterContext, String, Any?>, Event, Any> {
+private val graph = createGraph<State<WriterContext, String, Any?>, Event, Any>(null) {
         initialState(LowerCaseState())
         state<LowerCaseState> {
             on<OnLowerCaseDone> {
